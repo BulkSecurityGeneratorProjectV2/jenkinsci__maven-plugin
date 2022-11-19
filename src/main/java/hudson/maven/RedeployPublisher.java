@@ -43,6 +43,7 @@ import hudson.tasks.Recorder;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -206,8 +207,8 @@ public class RedeployPublisher extends Recorder {
         Properties systemProperties = null;
         String privateRepository = null;
 
-        File tmpSettings = File.createTempFile( "jenkins", "temp-settings.xml" );
-        File tmpSettingsGlobal = File.createTempFile( "jenkins", "temp-global-settings.xml" );
+        File tmpSettings = Files.createTempFile("jenkins", "temp-settings.xml").toFile();
+        File tmpSettingsGlobal = Files.createTempFile("jenkins", "temp-global-settings.xml").toFile();
         try {
             AbstractProject project = build.getProject();
 

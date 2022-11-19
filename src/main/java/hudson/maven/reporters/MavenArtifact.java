@@ -50,6 +50,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -273,7 +274,7 @@ public final class MavenArtifact implements Serializable {
                 try {
                     return MavenArtifact.this.getFile(build);
                 } catch (FileNotFoundException x) {
-                    File f = File.createTempFile("jenkins-", canonicalName);
+                    File f = Files.createTempFile("jenkins-", canonicalName).toFile();
                     f.deleteOnExit();
 
                     try(OutputStream os = new FileOutputStream(f)) {

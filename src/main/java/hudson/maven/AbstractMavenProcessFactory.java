@@ -51,6 +51,7 @@ import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
+import java.nio.file.Files;
 import java.util.Arrays;
 
 import static hudson.Util.fixNull;
@@ -580,7 +581,7 @@ public abstract class AbstractMavenProcessFactory
             // but during the development and unit test environment, we may be picking the class up from the classes dir
             Zip zip = new Zip();
             zip.setBasedir(jar);
-            File t = File.createTempFile(seedName, "jar");
+            File t = Files.createTempFile(seedName, "jar").toFile();
             t.delete();
             zip.setDestFile(t);
             zip.setProject(new Project());
